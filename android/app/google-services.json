@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1060553584409",
+    "firebase_url": "https://livrariavinns.firebaseio.com",
+    "project_id": "livrariavinns",
+    "storage_bucket": "livrariavinns.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060553584409:android:0f5884d7c4a2dd296d5f88",
+        "android_client_info": {
+          "package_name": "com.vinn.vinns_books"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060553584409-mkufj322ogmpk49q9t75jodt9dj3lj64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vinn.vinns_books",
+            "certificate_hash": "f254617842c899b6b4a613f23c1266030794a7fd"
+          }
+        },
+        {
+          "client_id": "1060553584409-6322u6mor2274ses3j8fc1apgker1evg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0n4S8Xo1R1bjTMcwL15S03pt5PXE2VRQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060553584409-6322u6mor2274ses3j8fc1apgker1evg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
