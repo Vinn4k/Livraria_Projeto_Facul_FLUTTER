@@ -44,7 +44,11 @@ class bookData extends StatelessWidget {
                           CircularProgressIndicator(),
                       errorWidget: (context, url, error) => Icon(Icons.error),
                     ),
-                    onTap: () {},
+                    onTap: () async {
+                      String url = await data['linkpdf'];
+
+                      await launchURL(url);
+                    },
                   ),
                 ),
                 SizedBox(
