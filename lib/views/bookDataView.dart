@@ -20,7 +20,7 @@ class bookData extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.8,
+              left: MediaQuery.of(context).size.width * 0.098,
             ),
             child: Text(
               data['Titulo'],
@@ -33,7 +33,8 @@ class bookData extends StatelessWidget {
             ),
           ),
           Container(
-            child: Row(
+
+          child: Row(
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width * 0.3,
@@ -65,7 +66,6 @@ class bookData extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(),
           Container(
               width: MediaQuery.of(context).size.width * 0.6,
               margin: EdgeInsets.only(

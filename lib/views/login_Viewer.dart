@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:vinns_books/Controllers/firebaseController.dart';
 
@@ -151,11 +152,23 @@ class _LoginVState extends State<LoginV> {
 
                       ),
                       Container(
-                        child: Text("Sair", style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.width*0.1,
-                        )
+                        child: FlatButton(
+                          child: Text("Sair", style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.05,
+                          )
+                          ),
+                          onPressed: () {
+                            Future.delayed(
+                                const Duration(milliseconds: 1000), () {
+                              SystemChannels.platform.invokeMethod(
+                                  'SystemNavigator.pop');
+                            });
+                          },
                         ),
                       ),
 

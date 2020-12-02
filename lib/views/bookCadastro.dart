@@ -1,6 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:vinns_books/Controllers/firebaseController.dart';
+import 'package:flutter/services.dart';
+
+import 'home_View.dart';
 
 class BookCadas extends StatefulWidget {
   @override
@@ -13,12 +18,17 @@ var discricaoC = TextEditingController();
 var editoraC = TextEditingController();
 var linkpdfC = TextEditingController();
 var imglinkC = TextEditingController();
+final cor = 0xff5c2441;
+final cor2 = 0xffb34866;
+final cor3 = 0xff4b7c9;
+bool isloading = false;
+String tes = "";
 
 class _BookCadasState extends State<BookCadas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.brown,
       body: SingleChildScrollView(
         child: Form(
           key: form,
@@ -31,7 +41,14 @@ class _BookCadasState extends State<BookCadas> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 9,
                 ),
-                Text("Cadastrar novo Livro"),
+                Text(
+                  "Cadastrar novo Livro",
+                  style: TextStyle(
+                    color: Color(cor2),
+                    fontFamily: 'Ral',
+                    fontSize: MediaQuery.of(context).size.width * 0.09,
+                  ),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
@@ -51,13 +68,18 @@ class _BookCadasState extends State<BookCadas> {
                     ),
                   ),
                   onChanged: (text) {
-                    setState(() {});
+                    setState(() {
+                      tes = "";
+                    });
                   },
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
                 TextFormField(
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(235),
+                  ],
                   controller: discricaoC,
                   validator: (value) {
                     if (value.isEmpty) {
@@ -66,7 +88,7 @@ class _BookCadasState extends State<BookCadas> {
                     return null;
                   },
                   decoration: InputDecoration(
-                    labelText: "Descrição",
+                    labelText: "Descrição limite de 235 Caracteres ",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -132,6 +154,7 @@ class _BookCadasState extends State<BookCadas> {
                     hintText: "Teste",
                     labelText: "Link Imagem",
                     border: OutlineInputBorder(
+
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
@@ -139,11 +162,20 @@ class _BookCadasState extends State<BookCadas> {
                     setState(() {});
                   },
                 ),
+                Text(tes),
                 Center(
+
                   child: FlatButton(
-                    child: Text("Cadastrar"),
+                    color: Color(cor),
+                    child: isloading ? CircularProgressIndicator()
+                        : Text("Cadastrar", style: TextStyle(
+                        color: Colors.white
+                    ),),
                     onPressed: () async {
                       if (form.currentState.validate()) {
+                        setState(() {
+                          isloading = true;
+                        });
                         print('valdo');
                         await Firestore.instance
                             .collection("book")
@@ -153,7 +185,16 @@ class _BookCadasState extends State<BookCadas> {
                           'desc': discricaoC.text,
                           'editora': editoraC.text,
                           'linkpdf': linkpdfC.text,
-                          'imgLink': imglinkC.text
+                          'imgLink': imglinkC.text,
+                        });
+                        setState(() {
+                          isloading = false;
+                          tituloC.text = "";
+                          discricaoC.text = "";
+                          editoraC.text = "";
+                          linkpdfC.text = "";
+                          imglinkC.text = "";
+                          tes = "Cadastro Realizado";
                         });
                       }
                     },
